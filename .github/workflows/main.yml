@@ -1,0 +1,39 @@
+name: github-action
+
+env:
+  apiKey: ${{ secrets.BLAZEMETER_API_KEY }}
+  apiSecret: ${{ secrets.BLAZEMETER_API_SECRET }}
+  createTest: "true"
+  inputStartFile: "./api_load_test.jmx"
+  testName: API_Load_Test
+  projectID: 2439645
+  continuePipeline: "false"
+  showTailLog: "false"
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  run-blazemeter-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2.3.4
+
+    - name: Run BlazeMeter test
+      uses: BlazeRunner-BZR/Github-Action@v8.1
+      id: run-test
+      with:
+        apiKey: ${{ secrets.BLAZEMETER_API_KEY }}
+        apiSecret: ${{ secrets.BLAZEMETER_API_SECRET }}
+        createTest: ${{ env.createTest }}
+        inputStartFile: ${{ env.inputStartFile }}
+        testName: ${{ env.testName }}
+        projectID: ${{ env.projectID }}
+        continuePipeline: ${{ env.continuePipeline }}
+        showTailLog: ${{ env.showTailLog }}
+
+

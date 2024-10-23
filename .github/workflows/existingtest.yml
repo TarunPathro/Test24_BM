@@ -1,0 +1,25 @@
+name: BlazeMeter Performance Test
+
+on:
+  push:
+    branches:
+      - test
+  pull_request:
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      
+
+      - name: BlazeRunnerAction
+        uses: Blazemeter/github-action@v8.5
+        with:
+          apiKey: ${{ secrets.BLAZEMETER_API_KEY }}
+          apiSecret: ${{ secrets.BLAZEMETER_API_SECRET }}
+          testID: 14443669
+          testName: your_test_name # optional, default is 0

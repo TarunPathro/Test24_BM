@@ -5,7 +5,7 @@ env:
   apiSecret: ${{ secrets.BLAZEMETER_API_SECRET }}
   createTest: "true"
   inputStartFile: "./api_load_test.jmx"
-  testName: API_Load_Test
+  testName: API_Load_Test_Oct24
   projectID: 2439645
   continuePipeline: "false"
   showTailLog: "false"
